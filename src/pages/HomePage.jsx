@@ -44,7 +44,7 @@ const HomePage = () => {
             <Search size={24} />
             <input
               type="text"
-              className="text-[15px] md:text-md grow"
+              className="text-[14px] md:text-md grow"
               placeholder="What do you want to cook today?"
             />
           </label>
