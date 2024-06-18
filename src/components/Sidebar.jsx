@@ -50,21 +50,29 @@ const DesktopSidebar = () => {
 
 const MobileSidebar = () => {
   return (
-    <div className="flex justify-center gap-10 border-t fixed w-full bottom-0 left-0 bg-white zindex-10 p-2 sm:hidden">
-      <Link to={"/"}>
-        <Home
-          size={24}
-          className="cursor-pointer 
+    <>
+      <div className="absolute left-1 top-2 max-w-10 sm:hidden">
+        <a href="/">
+          <img className=" rounded-full" src="./mobile-logo.svg" alt="" />
+        </a>
+      </div>
+
+      <div className="flex justify-center gap-10 border-t fixed w-full bottom-0 left-0 bg-white  z-10 p-2 sm:hidden">
+        <Link to={"/"}>
+          <Home
+            size={24}
+            className="cursor-pointer 
         hover:text-green-700 hover:scale-110 transition-all"
-        />
-      </Link>
-      <Link to={"/favorites"}>
-        <Heart
-          size={24}
-          className="cursor-pointer
+          />
+        </Link>
+        <Link to={"/favorites"}>
+          <Heart
+            size={24}
+            className="cursor-pointer
         hover:text-green-700 hover:scale-110 transition-all"
-        />
-      </Link>
-    </div>
+          />
+        </Link>
+      </div>
+    </>
   );
 };

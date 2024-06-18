@@ -21,7 +21,7 @@ const HomePage = () => {
       const data = await response.json();
       setRecipes(data.hits);
     } catch (error) {
-      console.log(error.message);
+      console.log("Failed to fetch data from API");
     } finally {
       setLoading(false);
     }
@@ -38,7 +38,7 @@ const HomePage = () => {
 
   return (
     <div className="bg-[#faf9fb] p-10 flex-1">
-      <div className=" max-w-screen-lg mx-auto">
+      <div className=" max-w-screen-lg mx-auto pt-4">
         <form onSubmit={handleSearchRecipe}>
           <label className="input shadow-md flex items-center gap-2">
             <Search size={24} />
