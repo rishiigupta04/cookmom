@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Heart, HeartPulse, Soup } from "lucide-react";
 
 const getTwoValuesFromArray = (arr) => {
@@ -7,6 +7,35 @@ const getTwoValuesFromArray = (arr) => {
 
 const RecipeCard = ({ recipe, bg, badge }) => {
   const healthLabels = getTwoValuesFromArray(recipe.healthLabels);
+  const [isFavorite, setIsFavorite] = useState(
+    localStorage.getItem("favorites")?.includes(recipe.label)
+  );
+
+  // Function to add or remove a recipe from the favorites list in localStorage.
+  const addRecipeToFavorites = () => {
+    // Retrieve the list of favorites from localStorage, or initialize it to an empty array if it doesn't exist.
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    // Find the index of the recipe in the favorites list.
+    const index = favorites.findIndex((fav) => fav.label === recipe.label);
+
+    // Create a copy of the favorites list.
+    const newFavorites = [...favorites];
+
+    // If the recipe is already in the favorites list, remove it.
+    if (index !== -1) {
+      newFavorites.splice(index, 1);
+      setIsFavorite(false);
+    }
+    // Otherwise, add the recipe to the favorites list.
+    else {
+      newFavorites.push(recipe);
+      setIsFavorite(true);
+    }
+
+    // Update the favorites list in localStorage with the new list.
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+  };
 
   return (
     <div
@@ -17,20 +46,37 @@ const RecipeCard = ({ recipe, bg, badge }) => {
         target="_blank"
         className="relative h-36"
       >
+        <div className="skeleton absolute inset-0" />
         <img
           src={recipe.image}
           alt="recipe"
-          className="rounded-md w-full h-full object-cover cursor-pointer"
+          className="rounded-md w-full h-full object-cover cursor-pointer opacity-0 transition-opacity duration-500"
+          onLoad={(e) => {
+            e.currentTarget.style.opacity = 1;
+            e.currentTarget.previousElementSibling.style.display = "none";
+          }}
         />
+
         <div className="absolute bottom-2 left-2 bg-white rounded-full cursor-pointer flex items-center gap-1  px-2">
           <Soup size={16} />{" "}
           <span className="text-[15px]"> {recipe.yield} Servings</span>
         </div>
-        <div className=" object- absolute top-2 right-2 bg-white rounded-full cursor-pointer p-1">
-          <Heart
-            size={24}
-            className="hover:fill-red-600 hover:text-red-600 transition-all"
-          />
+        <div
+          className=" object- absolute top-2 right-2 bg-white rounded-full cursor-pointer p-1"
+          onClick={(e) => {
+            e.preventDefault();
+            addRecipeToFavorites();
+          }}
+        >
+          {!isFavorite && (
+            <Heart
+              size={20}
+              className="hover:fill-red-500 hover:text-red-500"
+            />
+          )}
+          {isFavorite && (
+            <Heart size={20} className="fill-red-500 text-red-500" />
+          )}
         </div>
       </a>
 
