@@ -37,14 +37,14 @@ const HomePage = () => {
   };
 
   return (
-    <div className="bg-[#faf9fb] p-10 flex-1">
+    <div className="bg-[#faf9fb] p-8 sm:p-10 flex-1">
       <div className=" max-w-screen-lg mx-auto pt-4">
         <form onSubmit={handleSearchRecipe}>
           <label className="input shadow-md flex items-center gap-2">
             <Search size={24} />
             <input
               type="text"
-              className="text-sm md:text-md grow"
+              className="text-[15px] md:text-md grow"
               placeholder="What do you want to cook today?"
             />
           </label>

@@ -53,11 +53,17 @@ const MobileSidebar = () => {
     <>
       <div className="absolute left-1 top-2 max-w-10 sm:hidden">
         <a href="/">
-          <img className=" rounded-full" src="./mobile-logo.svg" alt="" />
+          <img src="/mobile-logo.svg" alt="" />
         </a>
       </div>
 
-      <div className="flex justify-center gap-10 border-t fixed w-full bottom-0 left-0 bg-white  z-10 p-2 sm:hidden">
+      <div className="absolute right-3 top-2 max-w-32 sm:hidden">
+        <a href="/">
+          <img src="/logo.svg" alt="" />
+        </a>
+      </div>
+
+      <div className="flex justify-center gap-10 border-t fixed w-full bottom-0 left-0 bg-white z-10 p-2 sm:hidden">
         <Link to={"/"}>
           <Home
             size={24}
