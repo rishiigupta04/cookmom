@@ -57,7 +57,7 @@ const MobileSidebar = () => {
         </a>
       </div>
 
-      <div className="absolute right-3 top-2 max-w-32 sm:hidden">
+      <div className="absolute right-1 top-2 max-w-32 sm:hidden">
         <a href="/">
           <img src="/logo.svg" alt="" />
         </a>

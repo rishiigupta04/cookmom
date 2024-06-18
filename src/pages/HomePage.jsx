@@ -37,7 +37,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="bg-[#faf9fb] p-8 sm:p-10 flex-1">
+    <div className="bg-[#faf9fb] p-8 sm:p-10 flex-1 min-h-screen">
       <div className=" max-w-screen-lg mx-auto pt-4">
         <form onSubmit={handleSearchRecipe}>
           <label className="input shadow-md flex items-center gap-2">
